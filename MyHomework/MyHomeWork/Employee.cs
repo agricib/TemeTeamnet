@@ -25,13 +25,13 @@ namespace MyHomeWork
             FirstName = firstName;
         }
 
-        public void AddLeave(Employee employee,Leave leave)
+        public void AddLeave(Leave leave)
         {
-            if (employee.AvailableDaysOff < 0)
+            if (this.AvailableDaysOff < 0)
                 throw NegativeLeaveDaysException();
             LeaveList.Add(leave);
             SubstractDays(leave.Duration);
-            
+            DisplayInfo();
         }
 
         private Exception NegativeLeaveDaysException()
@@ -43,12 +43,20 @@ namespace MyHomeWork
         private void SubstractDays(int days)
         {
             this.AvailableDaysOff -= days;
-            Console.WriteLine("Remaining available off days :{0}", this.AvailableDaysOff);
         }
 
-        public void DisplayInfo()
+        private string DisplayInfo()
         {
-            Console.WriteLine("Employee's name is : {0}{1}. Salary : {2}. Number of leave day's : {3}", this.FirstName, this.LastName, this.Salary, this.AvailableDaysOff);
+            string info = String.Format("Employee's name is : {0}{1}. Salary : {2}. Number of leave day's : {3}", this.FirstName, this.LastName, this.Salary, this.AvailableDaysOff);
+            return info;
+        }
+
+        public void ShowLeavePeriods()
+        {
+            foreach (var leave in LeaveList)
+            {
+                Console.WriteLine(leave.ToString());
+            }
         }
 
     }
