@@ -23,6 +23,7 @@ namespace MyHomeWork
             DateOfBirth = dateOfBirth;
             LastName = lastName;
             FirstName = firstName;
+            LeaveList = new List<Leave>();
         }
 
         public void AddLeave(Leave leave)
@@ -32,6 +33,7 @@ namespace MyHomeWork
             LeaveList.Add(leave);
             SubstractDays(leave.Duration);
             DisplayInfo();
+            
         }
 
         private Exception NegativeLeaveDaysException()
@@ -51,13 +53,10 @@ namespace MyHomeWork
             return info;
         }
 
-        public void ShowLeavePeriods()
+        public List<Leave> GetLeavePeriods(int year)
         {
-            foreach (var leave in LeaveList)
-            {
-                Console.WriteLine(leave.ToString());
-            }
+            var leaveDays = LeaveList.Where(x => x.StartingDate.Year == year).ToList();
+            return leaveDays;
         }
-
     }
 }
