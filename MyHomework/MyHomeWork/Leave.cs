@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace MyHomeWork
 {
-    class Leave 
+    class Leave
     {
         public DateTime StartingDate { get; set; }
         public int Duration { get; set; }
         public Employee Employee { get; set; }
 
-        public enum LeaveType 
+        private LeaveType leaveType;
+        public enum LeaveType
         {
             medical,
             holiday,
             other,
         };
-        private LeaveType leaveType;
-
-        public Leave(DateTime startingDate, int duration, LeaveType  leaveType, Employee employee)
+        
+        public Leave(DateTime startingDate, int duration, LeaveType leaveType, Employee employee)
         {
             StartingDate = startingDate;
             Duration = duration;

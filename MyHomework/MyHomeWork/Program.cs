@@ -17,8 +17,8 @@ namespace MyHomeWork
         static void Main(string[] args)
         {
 
-            Employee empl1 = new Employee(1, "12/12/2012", 2000, 200, "1/1/1993", "White", "Walter");
-            Employee empl2 = new Employee(2, "1/1/2014", 1500, 100, "12/12/1991", "Fox", "Jane");
+            Employee empl1 = new Employee(1, DateTime.Now, 2000, 200, DateTime.Today, "White", "Walter");
+            Employee empl2 = new Employee(2, DateTime.Now, 1500, 100, DateTime.Today, "Fox", "Jane");
             employeeList.Add(empl1);
             employeeList.Add(empl2);
         }
