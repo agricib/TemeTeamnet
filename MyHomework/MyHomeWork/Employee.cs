@@ -27,19 +27,28 @@ namespace MyHomeWork
 
         public void AddLeave(Employee employee,Leave leave)
         {
+            if (employee.AvailableDaysOff < 0)
+                throw NegativeLeaveDaysException();
             LeaveList.Add(leave);
-            SubstractDays(employee, leave.Duration);
+            SubstractDays(leave.Duration);
+            
         }
 
-        private void SubstractDays(Employee employee, int days)
+        private Exception NegativeLeaveDaysException()
         {
-            employee.AvailableDaysOff -= days;
-            Console.WriteLine("Remaining available off days :{0}", employee.AvailableDaysOff);
+           string message = "Numarul de zile ramase nu poate fi mai mare decat durata concediului";
+           return new Exception(message);
         }
 
-        public void DisplayInfo(Employee employee)
+        private void SubstractDays(int days)
         {
-            Console.WriteLine("Employee's name is : {0}{1}. Salary : {2}. Number of leave day's : {3}", employee.FirstName, employee.LastName, employee.Salary, employee.AvailableDaysOff);
+            this.AvailableDaysOff -= days;
+            Console.WriteLine("Remaining available off days :{0}", this.AvailableDaysOff);
+        }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine("Employee's name is : {0}{1}. Salary : {2}. Number of leave day's : {3}", this.FirstName, this.LastName, this.Salary, this.AvailableDaysOff);
         }
 
     }
