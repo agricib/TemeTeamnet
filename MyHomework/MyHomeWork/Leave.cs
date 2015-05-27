@@ -8,12 +8,12 @@ namespace MyHomeWork
 {
     class Leave 
     {
-        public string StartingDate { get; set; }
+        public DateTime StartingDate { get; set; }
         public int Duration { get; set; }
-        public string LeaveType { get; set; }
+        public Enum LeaveType { get; set; }
         public Employee Employee { get; set; }
 
-        public Leave(string startingDate,int duration,string leaveType,Employee employee)
+        public Leave(DateTime startingDate, int duration, Enum leaveType, Employee employee)
         {
             StartingDate = startingDate;
             Duration = duration;

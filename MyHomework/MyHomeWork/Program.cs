@@ -21,16 +21,6 @@ namespace MyHomeWork
             Employee empl2 = new Employee(2, "1/1/2014", 1500, 100, "12/12/1991", "Fox", "Jane");
             employeeList.Add(empl1);
             employeeList.Add(empl2);
-
-            Console.WriteLine("Do you wish to add a new leave? Answer with yes or no!");
-            var answer = Console.ReadLine();
-            if(answer == "yes")
-                Employee.AddNewLeave();
-
-
-
-
-            Console.ReadLine();
         }
     }
 }
