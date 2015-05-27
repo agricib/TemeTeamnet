@@ -10,14 +10,21 @@ namespace MyHomeWork
     {
         public DateTime StartingDate { get; set; }
         public int Duration { get; set; }
-        public Enum LeaveType { get; set; }
         public Employee Employee { get; set; }
 
-        public Leave(DateTime startingDate, int duration, Enum leaveType, Employee employee)
+        public enum LeaveType 
+        {
+            medical,
+            holiday,
+            other,
+        };
+        private LeaveType leaveType;
+
+        public Leave(DateTime startingDate, int duration, LeaveType  leaveType, Employee employee)
         {
             StartingDate = startingDate;
             Duration = duration;
-            LeaveType = leaveType;
+            this.leaveType = leaveType;
             Employee = employee;
         }
     }
