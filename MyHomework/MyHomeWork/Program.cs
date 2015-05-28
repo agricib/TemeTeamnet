@@ -21,7 +21,7 @@ namespace MyHomeWork
             employeeList.Add(empl1);
             employeeList.Add(empl2);
             Leave leave1 = new Leave(DateTime.Today, 5, LeaveType.Medical);
-            Leave leave2 = new Leave(new DateTime(2014 , 02 , 02),10, LeaveType.Other);
+            Leave leave2 = new Leave(new DateTime(2014 , 02 , 02),201, LeaveType.Other);
 
             AddNewLeave(empl1, leave2);
         }

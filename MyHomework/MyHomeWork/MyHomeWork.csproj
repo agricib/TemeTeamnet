@@ -44,6 +44,7 @@
     <Compile Include="Employee.cs" />
     <Compile Include="Leave.cs" />
     <Compile Include="LeaveType.cs" />
+    <Compile Include="NegativeLeaveDaysException.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

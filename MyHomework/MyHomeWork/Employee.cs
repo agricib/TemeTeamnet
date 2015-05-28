@@ -28,19 +28,14 @@ namespace MyHomeWork
 
         public void AddLeave(Leave leave)
         {
-            if (this.AvailableDaysOff < 0)
-                throw NegativeLeaveDaysException();
+            if (this.AvailableDaysOff < leave.Duration)
+                throw new NegativeLeaveDaysException("Numarul de zile ramase nu poate fi mai mare decat durata concediului");
             LeaveList.Add(leave);
             SubstractDays(leave.Duration);
             DisplayInfo();
             
         }
 
-        private Exception NegativeLeaveDaysException()
-        {
-           string message = "Numarul de zile ramase nu poate fi mai mare decat durata concediului";
-           return new Exception(message);
-        }
 
         private void SubstractDays(int days)
         {
