@@ -33,16 +33,14 @@ namespace MyHomeWork
             LeaveList.Add(leave);
             SubstractDays(leave.Duration);
             DisplayInfo();
-            
         }
-
 
         private void SubstractDays(int days)
         {
             this.AvailableDaysOff -= days;
         }
 
-        private string DisplayInfo()
+        public string DisplayInfo()
         {
             string info = String.Format("Employee's name is : {0}{1}. Salary : {2}. Number of leave day's : {3}", this.FirstName, this.LastName, this.Salary, this.AvailableDaysOff);
             return info;
