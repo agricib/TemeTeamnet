@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace MyHomeWork
 {
-    class Employee : Person
+    public class Employee : Person //implementeaza IComparable
     {
         public int Employee_Id { get; set; }
-        public DateTime DateOfEmployment{ get; set; }
+        public DateTime DateOfEmployment { get; set; }
         public int Salary { get; set; }
         public int AvailableDaysOff { get; set; }
         public List<Leave> LeaveList { get; set; }
+        public List<Project> ProjectList { get; set; }
 
         public Employee(int Id, DateTime dateOfEmployment, int salary, int availableDaysOff, DateTime dateOfBirth, string lastName, string firstName)
         {
@@ -24,6 +25,12 @@ namespace MyHomeWork
             LastName = lastName;
             FirstName = firstName;
             LeaveList = new List<Leave>();
+            ProjectList = new List<Project>();
+        }
+
+        private void SubstractDays(int days)
+        {
+            this.AvailableDaysOff -= days;
         }
 
         public void AddLeave(Leave leave)
@@ -33,11 +40,6 @@ namespace MyHomeWork
             LeaveList.Add(leave);
             SubstractDays(leave.Duration);
             DisplayInfo();
-        }
-
-        private void SubstractDays(int days)
-        {
-            this.AvailableDaysOff -= days;
         }
 
         public string DisplayInfo()
@@ -50,6 +52,18 @@ namespace MyHomeWork
         {
             var leaveDays = LeaveList.Where(x => x.StartingDate.Year == year).ToList();
             return leaveDays;
+        }
+
+        public AddProjectToEmployee(Project project)
+        {
+            ProjectList.Add(project);
+        }
+
+        public AddNewSalaryHistory(SalaryHistory salaryHistory)
+        {
+            //modifica salariul curent al engajatului
+            //adauga istorinc in salaryHistory
+            //ridica evenimentul NewSalaryAdded
         }
     }
 }

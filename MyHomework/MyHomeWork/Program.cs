@@ -23,7 +23,7 @@ namespace MyHomeWork
             Leave leave1 = new Leave(DateTime.Today, 5, LeaveType.Medical);
             Leave leave2 = new Leave(new DateTime(2014, 02, 02), 201, LeaveType.Other);
 
-            AddNewLeave(empl1, leave2);
+            AddNewLeave(empl1, leave1);
         }
 
         static void AddNewLeave(Employee employee, Leave leave)
