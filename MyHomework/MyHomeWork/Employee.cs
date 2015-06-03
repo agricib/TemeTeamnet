@@ -54,12 +54,12 @@ namespace MyHomeWork
             return leaveDays;
         }
 
-        public AddProjectToEmployee(Project project)
+        public void AddProjectToEmployee(Project project)
         {
             ProjectList.Add(project);
         }
 
-        public AddNewSalaryHistory(SalaryHistory salaryHistory)
+        public void AddNewSalaryHistory(SalaryHistory salaryHistory)
         {
             //modifica salariul curent al engajatului
             //adauga istorinc in salaryHistory
