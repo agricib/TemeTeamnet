@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyHomeWork
 {
-    class SalaryHistory
+    public class SalaryHistory
     {
         public DateTime ModificationDate { get; set; }
         public int EmployeeId { get; set; }
