@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,14 +17,33 @@ namespace MyHomeWork
 
         static void Main(string[] args)
         {
+
             Employee empl1 = new Employee(1, DateTime.Now, 2000, 200, DateTime.Today, "White", "Walter");
             Employee empl2 = new Employee(2, DateTime.Now, 1500, 100, DateTime.Today, "Fox", "Jane");
+            Employee empl3 = new Employee(3, DateTime.Now, 500, 100, DateTime.Today, "Body", "Loo");
+            Employee empl4 = new Employee(4, DateTime.Now, 100, 100, DateTime.Today, "Nanda", "Wolf");
+
+
             employeeList.Add(empl1);
             employeeList.Add(empl2);
+            employeeList.Add(empl3);
+            employeeList.Add(empl4);
+
             Leave leave1 = new Leave(DateTime.Today, 5, LeaveType.Medical);
             Leave leave2 = new Leave(new DateTime(2014, 02, 02), 201, LeaveType.Other);
 
-            AddNewLeave(empl1, leave1);
+            AddNewLeave(empl2, leave1);
+            employeeList.Sort();
+            
+            foreach (var item in employeeList)
+            {
+                Console.WriteLine(item);
+            }
+
+            WriteListOfEmployeeToTxt(employeeList);
+
+            Console.Read();
+            
         }
 
         static void AddNewLeave(Employee employee, Leave leave)
@@ -50,7 +70,14 @@ namespace MyHomeWork
             {
                 Console.WriteLine("Year {0} , duration {1} , {2}", item.StartingDate, item.Duration, item.LeaveType);
             }
-            Console.Read();
+        }
+
+        static void WriteListOfEmployeeToTxt(List<Employee> employeeList)
+        {
+            StreamWriter file = new StreamWriter("text.txt");
+            foreach (var line in employeeList)
+                file.WriteLine(line.ToString());
+            file.Close();
         }
     }
 }
