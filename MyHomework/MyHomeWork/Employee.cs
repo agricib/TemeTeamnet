@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MyHomeWork
 {
-    public class Employee : Person //implementeaza IComparable
+    public class Employee : Person , IComparable<Employee>
     {
         public int Employee_Id { get; set; }
         public DateTime DateOfEmployment { get; set; }
@@ -14,6 +15,8 @@ namespace MyHomeWork
         public int AvailableDaysOff { get; set; }
         public List<Leave> LeaveList { get; set; }
         public List<Project> ProjectList { get; set; }
+
+        public event EventHandler NewSalaryAdded;
 
         public Employee(int Id, DateTime dateOfEmployment, int salary, int availableDaysOff, DateTime dateOfBirth, string lastName, string firstName)
         {
@@ -61,9 +64,27 @@ namespace MyHomeWork
 
         public void AddNewSalaryHistory(SalaryHistory salaryHistory)
         {
-            //modifica salariul curent al engajatului
-            //adauga istorinc in salaryHistory
-            //ridica evenimentul NewSalaryAdded
+            SalaryHistory newSalaryHistory = new SalaryHistory(salaryHistory.ModificationDate, salaryHistory.EmployeeId, salaryHistory.Salary);
+            this.Salary = newSalaryHistory.Salary;
+            OnNewSalaryAdded(EventArgs.Empty); 
+        }
+
+        public virtual void OnNewSalaryAdded(EventArgs e)
+        {
+            if (NewSalaryAdded != null)
+                NewSalaryAdded(this, e);
+        }
+
+        public int CompareTo(Employee other)
+        {
+            if (this.Salary == other.Salary)
+                return this.FirstName.CompareTo(other.FirstName);
+            return other.Salary.CompareTo(this.Salary);
+        }
+
+        public override string ToString()
+        {
+            return this.Salary.ToString() + "," + this.FirstName;
         }
     }
 }
