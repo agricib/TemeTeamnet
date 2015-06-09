@@ -17,7 +17,6 @@ namespace MyHomeWork
 
         static void Main(string[] args)
         {
-
             Employee empl1 = new Employee(1, DateTime.Now, 2000, 200, DateTime.Today, "White", "Walter");
             Employee empl2 = new Employee(2, DateTime.Now, 1500, 100, DateTime.Today, "Fox", "Jane");
             Employee empl3 = new Employee(3, DateTime.Now, 500, 100, DateTime.Today, "Body", "Loo");
@@ -32,6 +31,9 @@ namespace MyHomeWork
             Leave leave1 = new Leave(DateTime.Today, 5, LeaveType.Medical);
             Leave leave2 = new Leave(new DateTime(2014, 02, 02), 201, LeaveType.Other);
 
+            JsonHelper.SerializeObject(empl1);
+            JsonHelper.DeserializeObject();
+    
             AddNewLeave(empl2, leave1);
             employeeList.Sort();
             
@@ -70,6 +72,8 @@ namespace MyHomeWork
             {
                 Console.WriteLine("Year {0} , duration {1} , {2}", item.StartingDate, item.Duration, item.LeaveType);
             }
+
+            
         }
 
         static void WriteListOfEmployeeToTxt(List<Employee> employeeList)

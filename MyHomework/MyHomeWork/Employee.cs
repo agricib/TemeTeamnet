@@ -15,6 +15,7 @@ namespace MyHomeWork
         public int AvailableDaysOff { get; set; }
         public List<Leave> LeaveList { get; set; }
         public List<Project> ProjectList { get; set; }
+        public List<SalaryHistory> SalaryHistoryList { get; set; }
 
         public event EventHandler NewSalaryAdded;
 
@@ -65,6 +66,7 @@ namespace MyHomeWork
         public void AddNewSalaryHistory(SalaryHistory salaryHistory)
         {
             SalaryHistory newSalaryHistory = new SalaryHistory(salaryHistory.ModificationDate, salaryHistory.EmployeeId, salaryHistory.Salary);
+            SalaryHistoryList.Add(newSalaryHistory);
             this.Salary = newSalaryHistory.Salary;
             OnNewSalaryAdded(EventArgs.Empty); 
         }
