@@ -21,7 +21,7 @@ namespace MyHomeWork
             }
         }
 
-        //Stiu ca sunt bou dar nu imi dau seama de ce?? nu se deserializeaza( nu vreau asta intr-un fisier ci aici in debug)
+
         public static void DeserializeObject()
         {
             JsonSerializer serializer = new JsonSerializer();
@@ -29,10 +29,11 @@ namespace MyHomeWork
             using (StreamReader file =new  StreamReader(@"d:\serializedFile.json"))
             using (JsonTextReader jTR = new JsonTextReader(file))
             {
-                Employee empl = (Employee)serializer.Deserialize(jTR);
-                StreamWriter str = File.CreateText(@"d:\deserializedFile.txt");
-                //nu imi dau seama cum sa-l scriu. am cautat
-
+                var empl = serializer.Deserialize<Employee>(jTR);
+                using (StreamWriter str = File.CreateText(@"d:\deserializedFile.txt"))
+                {
+                    str.Write(empl.ToString());
+                }
             }
         }
     }
