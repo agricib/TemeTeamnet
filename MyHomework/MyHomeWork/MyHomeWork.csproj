@@ -50,6 +50,7 @@
     <Compile Include="JsonHelper.cs" />
     <Compile Include="Leave.cs" />
     <Compile Include="LeaveType.cs" />
+    <Compile Include="MyEventArgs.cs" />
     <Compile Include="NegativeLeaveDaysException.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />

@@ -63,15 +63,17 @@ namespace MyHomeWork
             ProjectList.Add(project);
         }
 
-        public void AddNewSalaryHistory(SalaryHistory salaryHistory)
+        public void AddNewSalaryHistory(SalaryHistory newSalaryHistory)
         {
-            SalaryHistory newSalaryHistory = new SalaryHistory(salaryHistory.ModificationDate, salaryHistory.EmployeeId, salaryHistory.Salary);
+            var oldSalary = "Info inainte de modificare : " + this.Salary + "al angajatului : " + this.LastName +" "+ this.FirstName;
             SalaryHistoryList.Add(newSalaryHistory);
             this.Salary = newSalaryHistory.Salary;
-            OnNewSalaryAdded(EventArgs.Empty); 
+            var newSalary = "Info dupa de modificare : " + this.Salary + "al angajatului : " + this.LastName + " " + this.FirstName;
+
+            OnNewSalaryAdded(new MyEventArgs(oldSalary,newSalary)); 
         }
 
-        public virtual void OnNewSalaryAdded(EventArgs e)
+        public virtual void OnNewSalaryAdded(MyEventArgs e)
         {
             if (NewSalaryAdded != null)
                 NewSalaryAdded(this, e);
