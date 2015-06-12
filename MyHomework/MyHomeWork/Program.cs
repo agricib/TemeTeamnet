@@ -15,6 +15,8 @@ namespace MyHomeWork
             return employeeList;
         }
 
+        public static WriteListOfEmployeeToTextFile writeListOfEmployee;
+
         static void Main(string[] args)
         {
             Employee empl1 = new Employee(1, DateTime.Now, 2000, 200, DateTime.Today, "White", "Walter");
@@ -43,7 +45,6 @@ namespace MyHomeWork
             }
 
             WriteListOfEmployeeToTxt(employeeList);
-
             Console.Read();
             
         }
@@ -78,10 +79,7 @@ namespace MyHomeWork
 
         static void WriteListOfEmployeeToTxt(List<Employee> employeeList)
         {
-            StreamWriter file = new StreamWriter("text.txt");
-            foreach (var line in employeeList)
-                file.WriteLine(line.ToString());
-            file.Close();
+            writeListOfEmployee.WriteListOfEmployeeToText(employeeList);
         }
     }
 }
