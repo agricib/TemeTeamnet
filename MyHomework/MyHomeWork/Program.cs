@@ -78,7 +78,7 @@ namespace MyHomeWork
 
         static void DisplayAllMethodsOfEmployeeDashboard(EmployeeDashboard employeeDashboard,Employee employee,List<Employee> employeeList)
         {
-            foreach (var item in employeeDashboard.ShowAllProjects(employee.ProjectList))
+            foreach (var item in employeeDashboard.ShowAllProjects(employee))
             {
                 Console.WriteLine("{0} , {1} , {2} , {3}",item.Id,item.Name,item.StartDate,item.FinalDate);
             }

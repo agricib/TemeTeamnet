@@ -9,9 +9,9 @@ namespace MyHomeWork
 {
     public class EmployeeDashboard
     {
-        public List<Project> ShowAllProjects(List<Project> projectList) 
+        public List<Project> ShowAllProjects(Employee employee) 
         {
-            return projectList.OrderByDescending(e => e.StartDate).ToList();
+            return employee.ProjectList.OrderByDescending(e => e.StartDate).ToList();
         }
 
         public List<Project> ShowAllFinishedProjects(List<Project> projectList) 

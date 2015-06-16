@@ -82,7 +82,7 @@ namespace MyHomeWork
             OnNewSalaryAdded(new SalaryEventArgs(oldSalary,newSalary)); 
         }
 
-        protected virtual void OnNewSalaryAdded(SalaryEventArgs e)
+        public virtual void OnNewSalaryAdded(SalaryEventArgs e)
         {
             if (NewSalaryAdded != null)
                 NewSalaryAdded(this, e);

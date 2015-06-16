@@ -8,8 +8,8 @@ namespace MyHomeWork
 {
     public class SalaryEventArgs : EventArgs
     {
-        string oldSalaryInfo;
-        string newSalaryInfo;
+        public string oldSalaryInfo;
+        public string newSalaryInfo;
 
         public SalaryEventArgs(string oldSalaryInfo, string newSalaryInfo)
         {
