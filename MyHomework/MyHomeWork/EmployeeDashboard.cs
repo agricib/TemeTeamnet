@@ -9,13 +9,24 @@ namespace MyHomeWork
 {
     public class EmployeeDashboard
     {
-        public List<Project> ShowAllProjects(Employee employee) 
+        public List<Project> ShowAllProjects(List<Project> projectList) 
         {
-            var employeeProjects = employee.ProjectList.OrderByDescending(o => o.StartDate).ToList();
-            return employeeProjects;
+            return projectList.OrderByDescending(e => e.StartDate).ToList();
         }
-        public void ShowAllFinishedProjects() { }
-        public void ShowAllEmployeesOnProject() { }
-        public void ShowAllEmployeesOnLeave() { }
+
+        public List<Project> ShowAllFinishedProjects(List<Project> projectList) 
+        {
+            return projectList.Where(e => e.FinalDate < DateTime.Today).ToList();
+        }
+
+        public List<Employee> ShowAllEmployeesOnProject(List<Employee> employeeList)
+        {
+            return employeeList.Where(e => e.ProjectId == e.ProjectId).ToList();
+        }
+
+        public List<Leave> ShowAllEmployeesOnLeave(List<Leave> leaveList)
+        {
+            return leaveList.ToList();
+        }
     }
 }

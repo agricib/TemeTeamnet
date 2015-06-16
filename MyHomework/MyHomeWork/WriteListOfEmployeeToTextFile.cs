@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace MyHomeWork
 {
-    public class WriteListOfEmployeeToTextFile
+    public class ListOfEmployeeListWriter
     {
         public void WriteListOfEmployeeToText(List<Employee> employeeList)
         {
-            StreamWriter file = new StreamWriter("text.txt");
-            foreach (var line in employeeList)
-                file.WriteLineAsync(line.ToString());
-            file.Close();
+            using (StreamWriter file = new StreamWriter("text.txt"))
+            {
+                foreach (var item in employeeList)
+                    file.WriteLineAsync(item.ToString());
+                file.Close();
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ namespace MyHomeWork
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime FinalDate { get; set; }
+        
 
         private Employee manager;
         public Employee Manager
