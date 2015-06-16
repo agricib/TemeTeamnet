@@ -5,7 +5,7 @@ namespace MyHomeWork
 {
     public class JsonHelper
     {
-        public static string SerializeObject(object objectToSerialize)
+        public static string SerializeObject<T>(T objectToSerialize)
         {
             return JsonConvert.SerializeObject(objectToSerialize);
         }

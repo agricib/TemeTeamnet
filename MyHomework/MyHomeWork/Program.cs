@@ -39,20 +39,15 @@ namespace MyHomeWork
 
             AddProjectsToProjectList(empl1, project1);
             AddProjectsToProjectList(empl1, project2);
-            AddProjectsToProjectList(empl1, project3);
-            AddProjectsToProjectList(empl1, project4);
-
 
             var serializedObject = JsonHelper.SerializeObject(empl1);
             Console.WriteLine(serializedObject);
             var deserializedObject = JsonHelper.DeserializeObject(serializedObject);
             Console.WriteLine(deserializedObject);
 
-            var serializedObject1 = JsonHelper.SerializeObject(leave1);
-            Console.WriteLine(serializedObject1);
-            var deserializedObject1 = JsonHelper.DeserializeObject(serializedObject1);
-            Console.WriteLine(deserializedObject1);
-    
+
+            AddProjectsToProjectList(empl1, project3);
+            AddProjectsToProjectList(empl1, project4);
             AddNewLeave(empl1, leave1);
             employeeList.Sort();
             
