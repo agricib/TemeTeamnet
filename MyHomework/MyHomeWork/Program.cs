@@ -131,7 +131,7 @@ namespace MyHomeWork
 
         static void WriteListOfEmployeeToTxt(List<Employee> employeeList)
         {
-            writeToText.WriteListOfEmployeeToText(employeeList);
+            writeToText.WriteListOfEmployeeToTextFile(employeeList);
         }
     }
 }

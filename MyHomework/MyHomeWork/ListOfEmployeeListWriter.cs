@@ -9,7 +9,7 @@ namespace MyHomeWork
 {
     public class ListOfEmployeeListWriter
     {
-        public void WriteListOfEmployeeToText(List<Employee> employeeList)
+        public void WriteListOfEmployeeToTextFile(List<Employee> employeeList)
         {
             using (StreamWriter file = new StreamWriter("text.txt"))
             {
