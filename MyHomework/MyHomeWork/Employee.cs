@@ -30,6 +30,7 @@ namespace MyHomeWork
             FirstName = firstName;
             LeaveList = new List<Leave>();
             ProjectList = new List<Project>();
+            SalaryHistoryList = new List<SalaryHistory>();
         }
 
         private void SubstractDays(int days)
@@ -65,15 +66,16 @@ namespace MyHomeWork
 
         public void AddNewSalaryHistory(SalaryHistory newSalaryHistory)
         {
+
             var oldSalary = "Info inainte de modificare : " + this.Salary + "al angajatului : " + this.LastName +" "+ this.FirstName;
             SalaryHistoryList.Add(newSalaryHistory);
             this.Salary = newSalaryHistory.Salary;
             var newSalary = "Info dupa de modificare : " + this.Salary + "al angajatului : " + this.LastName + " " + this.FirstName;
 
-            OnNewSalaryAdded(new MyEventArgs(oldSalary,newSalary)); 
+            OnNewSalaryAdded(new SalaryEventArgs(oldSalary,newSalary)); 
         }
 
-        public virtual void OnNewSalaryAdded(MyEventArgs e)
+        protected virtual void OnNewSalaryAdded(SalaryEventArgs e)
         {
             if (NewSalaryAdded != null)
                 NewSalaryAdded(this, e);

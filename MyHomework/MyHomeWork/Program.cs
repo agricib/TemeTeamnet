@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace MyHomeWork
 
         static void Main(string[] args)
         {
+
+
             Employee empl1 = new Employee(1, DateTime.Now, 2000, 200, DateTime.Today, "White", "Walter");
             Employee empl2 = new Employee(2, DateTime.Now, 1500, 100, DateTime.Today, "Fox", "Jane");
             Employee empl3 = new Employee(3, DateTime.Now, 500, 100, DateTime.Today, "Body", "Loo");
@@ -32,8 +35,10 @@ namespace MyHomeWork
             Leave leave1 = new Leave(DateTime.Today, 5, LeaveType.Medical);
             Leave leave2 = new Leave(new DateTime(2014, 02, 02), 201, LeaveType.Other);
 
-            JsonHelper.SerializeObject(empl1);
-            JsonHelper.DeserializeObject();
+            var serializedObject = JsonHelper.SerializeObject(empl1);
+            Console.WriteLine(serializedObject);
+            var deserializedObject = JsonHelper.DeserializeObject(serializedObject);
+            Console.WriteLine(deserializedObject);
     
             AddNewLeave(empl2, leave1);
             employeeList.Sort();
@@ -44,8 +49,19 @@ namespace MyHomeWork
             }
 
             WriteListOfEmployeeToTxt(employeeList);
+
+            SalaryHistory newSalaryHistory = new SalaryHistory(DateTime.Now,1,1);
+
+            empl1.NewSalaryAdded += empl1_NewSalaryAdded;
+            empl1.AddNewSalaryHistory(newSalaryHistory);
+
             Console.Read();
             
+        }
+
+        static void empl1_NewSalaryAdded(object sender, EventArgs e)
+        {
+            Console.WriteLine("S-a ridicat evenimentul");
         }
 
         static void AddNewLeave(Employee employee, Leave leave)
