@@ -24,15 +24,14 @@ namespace MyHomeWork
 
         public static void DeserializeObject()
         {
-            JsonSerializer serializer = new JsonSerializer();
-
-            using (StreamReader file =new  StreamReader(@"d:\serializedFile.json"))
-            using (JsonTextReader jTR = new JsonTextReader(file))
+            using (StreamReader file = new StreamReader(@"d:\serializedFile.json"))
             {
-                var empl = serializer.Deserialize<Employee>(jTR);
+                JsonSerializer serializer = new JsonSerializer();
+                dynamic obj = serializer.Deserialize(file, typeof(object));
+
                 using (StreamWriter str = File.CreateText(@"d:\deserializedFile.txt"))
                 {
-                    str.Write(empl.ToString());
+                    str.Write(obj.ToString());
                 }
             }
         }
