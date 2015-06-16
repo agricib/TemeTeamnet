@@ -14,8 +14,7 @@ namespace MyHomeWork
         {
             return employeeList;
         }
-
-        public static WriteListOfEmployeeToTextFile writeListOfEmployee;
+        static WriteListOfEmployeeToTextFile writeToText = new WriteListOfEmployeeToTextFile();
 
         static void Main(string[] args)
         {
@@ -79,7 +78,7 @@ namespace MyHomeWork
 
         static void WriteListOfEmployeeToTxt(List<Employee> employeeList)
         {
-            writeListOfEmployee.WriteListOfEmployeeToText(employeeList);
+            writeToText.WriteListOfEmployeeToText(employeeList);
         }
     }
 }

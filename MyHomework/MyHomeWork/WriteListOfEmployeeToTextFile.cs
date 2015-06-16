@@ -13,7 +13,7 @@ namespace MyHomeWork
         {
             StreamWriter file = new StreamWriter("text.txt");
             foreach (var line in employeeList)
-                file.WriteLine(line.ToString());
+                file.WriteLineAsync(line.ToString());
             file.Close();
         }
     }
