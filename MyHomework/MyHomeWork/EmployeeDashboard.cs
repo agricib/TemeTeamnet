@@ -9,24 +9,39 @@ namespace MyHomeWork
 {
     public class EmployeeDashboard
     {
-        public List<Project> ShowAllProjects(Employee employee) 
+        public void ShowAllProjects(Employee employee)
         {
-            return employee.ProjectList.OrderByDescending(e => e.StartDate).ToList();
+            var projects = employee.ProjectList.OrderBy(project => project.StartDate).ToList();
+            Console.WriteLine("Toate proiectele pe care este un angajat:");
+            foreach (var item in projects)
+            {
+                Console.WriteLine("Nume Proiect:{0}, Data inceperii:{1}, Data finalizarii:{2}.", item.Name, item.StartDate, item.FinalDate);
+            }
         }
 
-        public List<Project> ShowAllFinishedProjects(List<Project> projectList) 
+        public void ShowAllFinishedProjects(Employee employee)
         {
-            return projectList.Where(e => e.FinalDate < DateTime.Today).ToList();
+            var finishedProjects = employee.ProjectList.Where(project => project.FinalDate < DateTime.Now).ToList();
+            Console.WriteLine("Toate proiectele finalizate ale angajatului:");
+            foreach (var item in finishedProjects)
+            {
+                Console.WriteLine("Nume Proiect:{0}, Data inceperii:{1}, Data finalizarii:{2}.", item.Name, item.StartDate, item.FinalDate);
+            }
         }
 
-        public List<Employee> ShowAllEmployeesOnProject(List<Employee> employeeList)
+        public void ShowAllEmployeesOnProject(IEnumerable<Employee> employees, Project project)
         {
-            return employeeList.Where(e => e.ProjectId == e.ProjectId).ToList();
+            var query = employees.Where(e => e.ProjectList.Where(p => p.Name == project.Name)).ToList();
+            Console.WriteLine("Toti angajatii de pe un proiect:");
+            foreach (var item in query)
+            {
+                Console.WriteLine("Nume angajat:{0}, Prenume angajat:{1}, Salariu:{2}, Data nasterii:{3}.");
+            }
         }
 
-        public List<Leave> ShowAllEmployeesOnLeave(List<Leave> leaveList)
+        public void ShowAllEmployeesOnLeave(List<Leave> leaveList)
         {
-            return leaveList.ToList();
+
         }
     }
 }

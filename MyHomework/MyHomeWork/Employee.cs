@@ -13,14 +13,13 @@ namespace MyHomeWork
         public DateTime DateOfEmployment { get; set; }
         public int Salary { get; set; }
         public int AvailableDaysOff { get; set; }
-        public int ProjectId { get; set; }
         public List<Leave> LeaveList { get; set; }
         public List<Project> ProjectList { get; set; }
         public List<SalaryHistory> SalaryHistoryList { get; set; }
 
         public event EventHandler NewSalaryAdded;
 
-        public Employee(int Id, DateTime dateOfEmployment, int salary, int availableDaysOff, DateTime dateOfBirth, string lastName, string firstName, int projectId)
+        public Employee(int Id, DateTime dateOfEmployment, int salary, int availableDaysOff, DateTime dateOfBirth, string lastName, string firstName)
         {
             Employee_Id = Id;
             DateOfEmployment = dateOfEmployment;
@@ -29,7 +28,6 @@ namespace MyHomeWork
             DateOfBirth = dateOfBirth;
             LastName = lastName;
             FirstName = firstName;
-            ProjectId = projectId;
             LeaveList = new List<Leave>();
             ProjectList = new List<Project>();
             SalaryHistoryList = new List<SalaryHistory>();
@@ -64,11 +62,6 @@ namespace MyHomeWork
         {
             var leaveDays = LeaveList.Where(x => x.StartingDate.Year == year).ToList();
             return leaveDays;
-        }
-
-        public void AddProjectToEmployee(Project project)
-        {
-            ProjectList.Add(project);
         }
 
         public void AddNewSalaryHistory(SalaryHistory newSalaryHistory)

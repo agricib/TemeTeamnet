@@ -21,13 +21,14 @@ namespace MyHomeWork
 
         static void Main(string[] args)
         {
-            Employee empl1 = new Employee(1, DateTime.Now, 2000, 200, DateTime.Today, "White", "Walter",1);
-            Employee empl2 = new Employee(2, DateTime.Now, 1500, 100, DateTime.Today, "Fox", "Jane",1);
-            Employee empl3 = new Employee(3, DateTime.Now, 500, 100, DateTime.Today, "Body", "Loo",1);
-            Employee empl4 = new Employee(4, DateTime.Now, 100, 100, DateTime.Today, "Nanda", "Wolf",2);
-            Leave leave1 = new Leave(empl1.LastName,DateTime.Today, 5, LeaveType.Medical);
-            Leave leave2 = new Leave(empl2.LastName,new DateTime(2014, 02, 02), 201, LeaveType.Other);
-            Project project1 = new Project(1,"Proiect",new DateTime(2014, 02, 02),new DateTime(2015, 02, 02));
+            #region Populare liste
+            Employee empl1 = new Employee(1, DateTime.Now, 2000, 200, DateTime.Today, "White", "Walter");
+            Employee empl2 = new Employee(2, DateTime.Now, 1500, 100, DateTime.Today, "Fox", "Jane");
+            Employee empl3 = new Employee(3, DateTime.Now, 500, 100, DateTime.Today, "Body", "Loo");
+            Employee empl4 = new Employee(4, DateTime.Now, 100, 100, DateTime.Today, "Nanda", "Wolf");
+            Leave leave1 = new Leave(empl1.LastName, DateTime.Today, 5, LeaveType.Medical);
+            Leave leave2 = new Leave(empl2.LastName, new DateTime(2014, 02, 02), 201, LeaveType.Other);
+            Project project1 = new Project(1, "Proiect", new DateTime(2014, 02, 02), new DateTime(2015, 02, 02));
             Project project2 = new Project(1, "Nume", new DateTime(2014, 02, 02), new DateTime(2015, 02, 02));
             Project project3 = new Project(1, "Aqua", new DateTime(2014, 02, 02), new DateTime(2015, 02, 02));
             Project project4 = new Project(1, "Shalabam,", new DateTime(2014, 02, 02), new DateTime(2015, 10, 10));
@@ -39,6 +40,8 @@ namespace MyHomeWork
 
             AddProjectsToProjectList(empl1, project1);
             AddProjectsToProjectList(empl1, project2);
+            #endregion
+
 
             var serializedObject = JsonHelper.SerializeObject(empl1);
             Console.WriteLine(serializedObject);
@@ -50,7 +53,7 @@ namespace MyHomeWork
             AddProjectsToProjectList(empl1, project4);
             AddNewLeave(empl1, leave1);
             employeeList.Sort();
-            
+
             foreach (var item in employeeList)
             {
                 Console.WriteLine(item);
@@ -58,17 +61,13 @@ namespace MyHomeWork
 
             WriteListOfEmployeeToTxt(employeeList);
 
-            SalaryHistory newSalaryHistory = new SalaryHistory(DateTime.Now,1,1);
+            SalaryHistory newSalaryHistory = new SalaryHistory(DateTime.Now, 1, 1000);
 
             empl1.NewSalaryAdded += empl1_NewSalaryAdded;
             empl1.AddNewSalaryHistory(newSalaryHistory);
 
-           
-
-            DisplayAllMethodsOfEmployeeDashboard(employeeDashboard, empl1, employeeList);
-
             Console.Read();
-            
+
         }
 
         static void empl1_NewSalaryAdded(object sender, EventArgs e)
@@ -76,40 +75,17 @@ namespace MyHomeWork
             Console.WriteLine("S-a ridicat evenimentul");
         }
 
-        static void DisplayAllMethodsOfEmployeeDashboard(EmployeeDashboard employeeDashboard,Employee employee,List<Employee> employeeList)
-        {
-            foreach (var item in employeeDashboard.ShowAllProjects(employee))
-            {
-                Console.WriteLine("{0} , {1} , {2} , {3}",item.Id,item.Name,item.StartDate,item.FinalDate);
-            }
-
-            foreach (var item in employeeDashboard.ShowAllEmployeesOnProject(employeeList))
-            {
-                Console.WriteLine("{0} , {1} , {2} , {3}", item.LastName, item.FirstName, item.ProjectId, item.Employee_Id);
-            }
-
-            foreach (var item in employeeDashboard.ShowAllFinishedProjects(employee.ProjectList))
-            {
-                Console.WriteLine("{0} , {1} , {2} , {3}", item.Id, item.Name, item.StartDate, item.FinalDate);
-            }
-            foreach (var item in employeeDashboard.ShowAllEmployeesOnLeave(employee.LeaveList))
-            {
-                Console.WriteLine("{0} , {1} , {2} , {3}", item.EmployeeName, item.Duration, item.LeaveType, item.StartingDate);
-            }
-
-        }
-
         static void AddNewLeave(Employee employee, Leave leave)
         {
-            try 
+            try
             {
-                employee.AddLeave(leave); 
+                employee.AddLeave(leave);
             }
             catch (NegativeLeaveDaysException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            catch(NullReferenceException ex)
+            catch (NullReferenceException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -124,7 +100,7 @@ namespace MyHomeWork
             }
         }
 
-        static void AddProjectsToProjectList(Employee employee,Project project)
+        static void AddProjectsToProjectList(Employee employee, Project project)
         {
             employee.AddProjectsToList(project);
         }

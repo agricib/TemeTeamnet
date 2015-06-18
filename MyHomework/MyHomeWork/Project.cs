@@ -14,13 +14,6 @@ namespace MyHomeWork
         public DateTime FinalDate { get; set; }
         
 
-        private Employee manager;
-        public Employee Manager
-        {
-            get { return manager; }
-            set { manager = value; }
-        }
-
         public Project(int id,string name,DateTime startDate,DateTime finalDate)
         {
             Id = id;
