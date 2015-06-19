@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,64 +9,52 @@ namespace MyHomeWork
 {
     class Program
     {
-        private static List<Employee> employeeList = new List<Employee>();
+        static EmployeeDashboard employeeDashboard = new EmployeeDashboard();
+        static List<Employee> employeeList = new List<Employee>();
         public List<Employee> GetList()
         {
             return employeeList;
         }
 
-        static ListOfEmployeeListWriter writeToText = new ListOfEmployeeListWriter();
-        static EmployeeDashboard employeeDashboard = new EmployeeDashboard();
-
         static void Main(string[] args)
         {
             #region Populare liste
-            Employee empl1 = new Employee(1, DateTime.Now, 2000, 200, DateTime.Today, "White", "Walter");
-            Employee empl2 = new Employee(2, DateTime.Now, 1500, 100, DateTime.Today, "Fox", "Jane");
-            Employee empl3 = new Employee(3, DateTime.Now, 500, 100, DateTime.Today, "Body", "Loo");
-            Employee empl4 = new Employee(4, DateTime.Now, 100, 100, DateTime.Today, "Nanda", "Wolf");
-            Leave leave1 = new Leave(empl1.LastName, DateTime.Today, 5, LeaveType.Medical);
-            Leave leave2 = new Leave(empl2.LastName, new DateTime(2014, 02, 02), 201, LeaveType.Other);
+            Employee employee1 = new Employee(1, DateTime.Now, 2000, 200, DateTime.Today, "White", "Walter");
+            Employee employee2 = new Employee(2, DateTime.Now, 1500, 100, DateTime.Today, "Fox", "Jane");
+            Employee employee3 = new Employee(3, DateTime.Now, 500, 100, DateTime.Today, "Body", "Loo");
+            Employee employee4 = new Employee(4, DateTime.Now, 100, 100, DateTime.Today, "Nanda", "Wolf");
+            Leave leave1 = new Leave(employee1.LastName, DateTime.Today, 5, LeaveType.Medical);
+            Leave leave2 = new Leave(employee2.LastName, new DateTime(2014, 02, 02), 201, LeaveType.Other);
             Project project1 = new Project(1, "Proiect", new DateTime(2014, 02, 02), new DateTime(2015, 02, 02));
             Project project2 = new Project(1, "Nume", new DateTime(2014, 02, 02), new DateTime(2015, 02, 02));
             Project project3 = new Project(1, "Aqua", new DateTime(2014, 02, 02), new DateTime(2015, 02, 02));
             Project project4 = new Project(1, "Shalabam,", new DateTime(2014, 02, 02), new DateTime(2015, 10, 10));
+            SalaryHistory newSalaryHistory = new SalaryHistory(DateTime.Now, 1, 1000);
 
-            employeeList.Add(empl1);
-            employeeList.Add(empl2);
-            employeeList.Add(empl3);
-            employeeList.Add(empl4);
 
-            AddProjectsToProjectList(empl1, project1);
-            AddProjectsToProjectList(empl1, project2);
+            employeeList.Add(employee1);
+            employeeList.Add(employee2);
+            employeeList.Add(employee3);
+            employeeList.Add(employee4);
+
+            AddProjectsToProjectList(employee1, project1);
+            AddProjectsToProjectList(employee1, project2);
+            AddProjectsToProjectList(employee1, project3);
+            AddProjectsToProjectList(employee1, project4);
             #endregion
 
+            Employee_Serializer_Desirializer(employee1);
 
-            var serializedObject = JsonHelper.SerializeObject(empl1);
-            Console.WriteLine(serializedObject);
-            var deserializedObject = JsonHelper.DeserializeObject(serializedObject);
-            Console.WriteLine(deserializedObject);
+            ShowSortedEmployeeList(employeeList);
 
-
-            AddProjectsToProjectList(empl1, project3);
-            AddProjectsToProjectList(empl1, project4);
-            AddNewLeave(empl1, leave1);
-            employeeList.Sort();
-
-            foreach (var item in employeeList)
-            {
-                Console.WriteLine(item);
-            }
+            AddNewLeave(employee1, leave1);
 
             WriteListOfEmployeeToTxt(employeeList);
 
-            SalaryHistory newSalaryHistory = new SalaryHistory(DateTime.Now, 1, 1000);
-
-            empl1.NewSalaryAdded += empl1_NewSalaryAdded;
-            empl1.AddNewSalaryHistory(newSalaryHistory);
+            employee1.NewSalaryAdded += empl1_NewSalaryAdded;
+            employee1.AddNewSalaryHistory(newSalaryHistory);
 
             Console.Read();
-
         }
 
         static void empl1_NewSalaryAdded(object sender, EventArgs e)
@@ -107,7 +94,27 @@ namespace MyHomeWork
 
         static void WriteListOfEmployeeToTxt(List<Employee> employeeList)
         {
+            ListOfEmployeeListWriter writeToText = new ListOfEmployeeListWriter();
             writeToText.WriteListOfEmployeeToTextFile(employeeList);
+        }
+
+        static void Employee_Serializer_Desirializer(Employee employee)
+        {
+            var serializedObject = JsonHelper<Employee>.SerializeObject(employee, @"d:\text.json");
+            Console.WriteLine(serializedObject);
+
+            var deserializedObject = JsonHelper<Employee>.DeserializeObject(serializedObject);
+            Console.WriteLine(deserializedObject);
+        }
+
+        static void ShowSortedEmployeeList(List<Employee> employeeList) 
+        {
+            employeeList.Sort();
+
+            foreach (var item in employeeList)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

@@ -31,9 +31,10 @@ namespace MyHomeWork
 
         public void ShowAllEmployeesOnProject(IEnumerable<Employee> employees, Project project)
         {
-            var query = employees.Where(e => e.ProjectList.Where(p => p.Name == project.Name)).ToList();
+            var projectList = employees.GetEnumerator().Current.ProjectList;
+            var employeesOnProject = employees;
             Console.WriteLine("Toti angajatii de pe un proiect:");
-            foreach (var item in query)
+            foreach (var item in employeesOnProject)
             {
                 Console.WriteLine("Nume angajat:{0}, Prenume angajat:{1}, Salariu:{2}, Data nasterii:{3}.");
             }
