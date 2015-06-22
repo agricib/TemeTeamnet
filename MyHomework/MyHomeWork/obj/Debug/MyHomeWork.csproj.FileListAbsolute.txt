@@ -16,4 +16,3 @@ C:\Users\bogdan.agrici\Documents\GitHub\TemeTeamnet\MyHomework\MyHomeWork\bin\De
 C:\Users\bogdan.agrici\Documents\GitHub\TemeTeamnet\MyHomework\MyHomeWork\bin\Debug\Newtonsoft.Json.dll
 C:\Users\bogdan.agrici\Documents\GitHub\TemeTeamnet\MyHomework\MyHomeWork\obj\Debug\MyHomeWork.exe
 C:\Users\bogdan.agrici\Documents\GitHub\TemeTeamnet\MyHomework\MyHomeWork\obj\Debug\MyHomeWork.pdb
-C:\Users\bogdan.agrici\Documents\GitHub\TemeTeamnet\MyHomework\MyHomeWork\obj\Debug\MyHomeWork.csprojResolveAssemblyReference.cache

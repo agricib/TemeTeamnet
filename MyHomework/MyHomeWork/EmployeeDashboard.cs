@@ -22,7 +22,7 @@ namespace MyHomeWork
         public void ShowAllFinishedProjects(Employee employee)
         {
             var finishedProjects = employee.ProjectList.Where(project => project.FinalDate < DateTime.Now).ToList();
-            Console.WriteLine("Toate proiectele finalizate ale angajatului:");
+            Console.WriteLine("Toate proiectele finalizate ale angajatului {0}:", employee.LastName);
             foreach (var item in finishedProjects)
             {
                 Console.WriteLine("Nume Proiect:{0}, Data inceperii:{1}, Data finalizarii:{2}.", item.Name, item.StartDate, item.FinalDate);
@@ -31,18 +31,24 @@ namespace MyHomeWork
 
         public void ShowAllEmployeesOnProject(IEnumerable<Employee> employees, Project project)
         {
-            var projectList = employees.GetEnumerator().Current.ProjectList;
-            var employeesOnProject = employees;
-            Console.WriteLine("Toti angajatii de pe un proiect:");
-            foreach (var item in employeesOnProject)
+            Console.WriteLine("Toti angajatii de pe proiectul {0}:", project.Name);
+            foreach (var item in employees.Where(e => e.ProjectList.Any(p => p.Id == project.Id)))
             {
-                Console.WriteLine("Nume angajat:{0}, Prenume angajat:{1}, Salariu:{2}, Data nasterii:{3}.");
+                Console.WriteLine("Nume angajat:{0}, Prenume angajat:{1}, Salariu:{2}, Data nasterii:{3}.", item.FirstName, item.LastName, item.Salary, item.DateOfBirth);
             }
         }
 
-        public void ShowAllEmployeesOnLeave(List<Leave> leaveList)
+        //As fi putut sa fac ShowAllEmployeeOnProject sa returneze lista si sa o folosesc in metoda de mai jos. Dar daca vroiam sa vad de pe alt proiect nu puteam.
+        //Desi in Program.cs am dolosti acelasi proiect
+        public void ShowAllEmployeesOnLeave(IEnumerable<Employee> employees, Project project)
         {
+            Console.WriteLine("Toti angajatii in concediu de pe proiectul {0}:", project.Name);
+            var allEmployeesOnProject = employees.Where(e => e.ProjectList.Any(p => p.Id == project.Id));
 
+            foreach (var item in allEmployeesOnProject.Where(e => e.LeaveList.Any(l => l.EndDate > DateTime.Now)))
+            {
+                Console.WriteLine("Nume angajat:{0}, Prenume angajat:{1}, Salariu:{2}, Data nasterii:{3}.", item.FirstName, item.LastName, item.Salary, item.DateOfBirth);
+            }
         }
     }
 }

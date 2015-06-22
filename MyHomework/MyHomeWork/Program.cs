@@ -9,7 +9,6 @@ namespace MyHomeWork
 {
     class Program
     {
-        static EmployeeDashboard employeeDashboard = new EmployeeDashboard();
         static List<Employee> employeeList = new List<Employee>();
         public List<Employee> GetList()
         {
@@ -24,7 +23,7 @@ namespace MyHomeWork
             Employee employee3 = new Employee(3, DateTime.Now, 500, 100, DateTime.Today, "Body", "Loo");
             Employee employee4 = new Employee(4, DateTime.Now, 100, 100, DateTime.Today, "Nanda", "Wolf");
             Leave leave1 = new Leave(employee1.LastName, DateTime.Today, 5, LeaveType.Medical);
-            Leave leave2 = new Leave(employee2.LastName, new DateTime(2014, 02, 02), 201, LeaveType.Other);
+            Leave leave2 = new Leave(employee2.LastName, new DateTime(2016, 02, 02), 201, LeaveType.Other);
             Project project1 = new Project(1, "Proiect", new DateTime(2014, 02, 02), new DateTime(2015, 02, 02));
             Project project2 = new Project(1, "Nume", new DateTime(2014, 02, 02), new DateTime(2015, 02, 02));
             Project project3 = new Project(1, "Aqua", new DateTime(2014, 02, 02), new DateTime(2015, 02, 02));
@@ -54,7 +53,17 @@ namespace MyHomeWork
             employee1.NewSalaryAdded += empl1_NewSalaryAdded;
             employee1.AddNewSalaryHistory(newSalaryHistory);
 
+            AllMethodFromEmployeeDashboard(employee1, project1);
+
             Console.Read();
+        }
+        static void AllMethodFromEmployeeDashboard(Employee employee, Project project)
+        {
+            EmployeeDashboard employeeDashboard = new EmployeeDashboard();
+            employeeDashboard.ShowAllProjects(employee);
+            employeeDashboard.ShowAllFinishedProjects(employee);
+            employeeDashboard.ShowAllEmployeesOnProject(employeeList, project);
+            employeeDashboard.ShowAllEmployeesOnLeave(employeeList, project);
         }
 
         static void empl1_NewSalaryAdded(object sender, EventArgs e)
