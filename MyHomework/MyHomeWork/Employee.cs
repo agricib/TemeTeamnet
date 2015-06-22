@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyHomeWork
 {
-    public class Employee : Person , IComparable<Employee>
+    public class Employee : Person, IComparable<Employee>
     {
         public int Employee_Id { get; set; }
         public DateTime DateOfEmployment { get; set; }
@@ -67,12 +67,12 @@ namespace MyHomeWork
         public void AddNewSalaryHistory(SalaryHistory newSalaryHistory)
         {
 
-            var oldSalary = "Info inainte de modificare : " + this.Salary + "al angajatului : " + this.LastName +" "+ this.FirstName;
+            var oldSalary = "Info inainte de modificare : " + this.Salary + "al angajatului : " + this.LastName + " " + this.FirstName;
             SalaryHistoryList.Add(newSalaryHistory);
             this.Salary = newSalaryHistory.Salary;
             var newSalary = "Info dupa de modificare : " + this.Salary + "al angajatului : " + this.LastName + " " + this.FirstName;
 
-            OnNewSalaryAdded(new SalaryEventArgs(oldSalary,newSalary)); 
+            OnNewSalaryAdded(new SalaryEventArgs(oldSalary, newSalary));
         }
 
         public virtual void OnNewSalaryAdded(SalaryEventArgs e)
@@ -90,7 +90,7 @@ namespace MyHomeWork
 
         public override string ToString()
         {
-            return this.Salary.ToString() + "," + this.FirstName;
+            return this.Salary.ToString() + ", " + this.FirstName + ", Date of Birth:" + this.DateOfBirth;
         }
     }
 }

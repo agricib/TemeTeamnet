@@ -5,7 +5,7 @@ namespace MyHomeWork
 {
     public class JsonHelper<T>
     {
-        public static string SerializeObject(T objectToSerialize,string filePath)
+        public static string SerializeObject(T objectToSerialize, string filePath)
         {
             var serializedObject = JsonConvert.SerializeObject(objectToSerialize);
             using (StreamWriter stream = new StreamWriter(filePath))
@@ -17,16 +17,16 @@ namespace MyHomeWork
             return serializedObject;
         }
 
-        public static T DeserializeObject(string filePath)
+        public static T DeserializeObject(string fileToDesirializePath, string desirializedNewFilePath)
         {
-            var desiriaizedObject =  (T)JsonConvert.DeserializeObject(filePath);
-            using (Stream stream = File.Open(filePath, FileMode.Open))
+            var desirializedObject = JsonConvert.DeserializeObject(fileToDesirializePath,typeof (T));
+            using (StreamWriter stream = new StreamWriter(desirializedNewFilePath))
             {
-                //sa scrie deserializarea in alt fisier. de terminat(desiriaizedObject);
+                stream.Write(desirializedObject);
                 stream.Close();
             }
 
-            return desiriaizedObject;
+            return (T)desirializedObject;
         }
     }
 }

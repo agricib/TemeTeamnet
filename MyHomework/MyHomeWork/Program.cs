@@ -100,14 +100,14 @@ namespace MyHomeWork
 
         static void Employee_Serializer_Desirializer(Employee employee)
         {
-            var serializedObject = JsonHelper<Employee>.SerializeObject(employee, @"d:\text.json");
+            var serializedObject = JsonHelper<Employee>.SerializeObject(employee, @"d:\serialized.json");
             Console.WriteLine(serializedObject);
 
-            var deserializedObject = JsonHelper<Employee>.DeserializeObject(serializedObject);
+            var deserializedObject = JsonHelper<Employee>.DeserializeObject(serializedObject, @"d:\deserialized.txt");
             Console.WriteLine(deserializedObject);
         }
 
-        static void ShowSortedEmployeeList(List<Employee> employeeList) 
+        static void ShowSortedEmployeeList(List<Employee> employeeList)
         {
             employeeList.Sort();
 
